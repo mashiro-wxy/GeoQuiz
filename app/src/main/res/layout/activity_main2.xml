@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="java.util.ArrayList" />
+        <import type="wengxiaoyang.hziee.geoquiz.Question" />
+        <variable
+            name="viewModel"
+            type="wengxiaoyang.hziee.geoquiz.QuestionViewModel" />
+        <variable
+            name="checkNumber"
+            type="int" />
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/question_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.textResId}"
+        android:padding="24dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/true_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.trueButtonClick()}"
+            android:visibility="@{viewModel.ButtonEnable()}"
+            style="?android:attr/buttonStyle"
+            android:text="@{`True`}" />
+
+        <Button
+            android:id="@+id/false_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.falseButtonClick()}"
+            android:visibility="@{viewModel.ButtonEnable()}"
+            style="?android:attr/buttonStyle"
+            android:text="@{`False`}" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/cheat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Cheat!`}"/>
+
+        <TextView
+            android:id="@+id/cheat_number_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`剩余次数: ` + checkNumber}"
+            android:padding="8dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/last_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.lastButtonClick()}"
+            android:src="@drawable/arrow_left"
+            style="?android:attr/buttonStyle" />
+
+        <ImageButton
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.nextButtonClick()}"
+            android:src="@drawable/arrow_right"
+            style="?android:attr/buttonStyle" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/question_answer_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.message}"
+        android:padding="24dp" />
+</LinearLayout>
+</layout>
